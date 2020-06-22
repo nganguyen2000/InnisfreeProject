@@ -19,6 +19,7 @@
                     <th>Giá cũ</th>
                     <th>Hình ảnh</th>
                     <th>Chi tiết</th>
+                    <th>Loại</th>
                     <th>Delete</th>
                     <th>Edit</th>
                 </tr>
@@ -30,6 +31,13 @@
                         <td>{{$products->oldPrice}}</td>
                         <td> <img src="{{'/storage/'.$products->image}}" alt="" height="150px" width="150px"></td>
                         <td>{{$products->detail}}</td>
+                        <td>
+                            @foreach($categories as $category)
+                                @if($products->category_id == $category->id)
+                                 {{$category->name}}
+                                 @endif
+                             @endforeach
+                        </td>
                         <td>
                             <form action="{{'/product/index/'.$products->id}}" method="POST">
                                 @csrf

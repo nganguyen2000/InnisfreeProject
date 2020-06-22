@@ -11,7 +11,8 @@ class ManageProductController extends Controller
 {
    function index(){
        $products = DB::table('products')->get();
-       return view("admin.product.index",["products"=>$products]);
+       $categories = Category::all();
+       return view("admin.product.index",["categories"=>$categories,"products"=>$products]);
 
    }
    function create(){
@@ -23,7 +24,7 @@ class ManageProductController extends Controller
     $name = $request->name;
     $price = $request->price;
     $oldPrice = $request->oldPrice;
-    $category = $request->category;
+    $cate = $request->category;
     $file =$request->file('image')->store("public");
     $detail=$request->detail;
 
@@ -31,7 +32,7 @@ class ManageProductController extends Controller
     
     $product = new Product;
     $product->name =$name;
-    $product->category_id =$category;
+    $product->category_id =$cate;
     $product->image =$file;
     $product->price =$price;
     $product->oldPrice=$oldPrice;
