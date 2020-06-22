@@ -1,0 +1,52 @@
+.title {
+    color: pink;
+    text-align: center;
+}
+
+table,
+th,
+td {
+    border: 1px solid #868585;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 10px;
+}
+
+table tr:nth-child(odd) {
+    background-color: #eee;
+}
+
+table tr:nth-child(even) {
+    background-color: white;
+}
+
+table tr:nth-child(1) {
+    background-color: skyblue;
+}
+
+.btd {
+    border-radius: 45px 45px 45px;
+    background-color: red;
+    border: 1px solid burlywood;
+}
+
+.bte {
+    border-radius: 45px 45px 45px;
+    background-color: turquoise;
+    border: 1px solid burlywood;
+}
+
+.add {
+    margin-top: 20px;
+    border-radius: 45px 45px 45px;
+    background-color: lawngreen;
+    border: 1px solid black;
+}
