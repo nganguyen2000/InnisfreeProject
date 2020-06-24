@@ -25,23 +25,28 @@
                             <input type="text" name="name" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="price"><b>Giá sản phẩm</b></label>
-                            <input type="text" name="price" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="image"><b>Ảnh</b></label>
-                            <input type="file" name="image" class="form-control">
-                       </div>
-                        
-                  </div>
-                  <div class="col-sm-6">
-                        <div class="form-group">
                             <label for="oldeprice"> <b>Giá cũ</b> </label>
                             <input type="text" name="oldPrice" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="detail"> <b>Chi tiết</b></label>
-                            <input type="text" name="detail" class="form-control">
+                            <label for="price"><b>Giá sản phẩm</b></label>
+                            <input type="text" name="price" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                             <input type="number" name="quantity" class="form-control">
+                          </div>
+                        
+                        
+                  </div>
+                  <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="capacity"> <b>Dung tích</b> </label>
+                            <input type="number" name="capacity" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="content"> <b>Chi tiết</b></label>
+                            <input type="text" name="content" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="parent_id">Loại</label>
@@ -51,13 +56,30 @@
                               @endforeach
                             </select>
                        </div>
+                       <div class="form-group">
+                           <label for="origin"><b>Xuất xứ</b></label>
+                           <select name="origin" class="form-control">
+                               <option value="Korean">Korean</option>
+                               <option value="USA">USA</option>
+                               <option value="UK">UK</option>
+                               <option value="Australia">Australia</option>
+                               <option value="Japan">Japan</option>
+                           </select>
+
+                       </div>
+                       
                   </div>
-                  
-           </div>
+                 
+            </div>
+            <div class="form-group">
+                <label for="image"><b>Ảnh</b></label>
+                <input type="file" name="image" class="form-control">
+             </div>
            
-        <button type="submit" class="btn btn-primary">
-            Thêm
-        </button>
+           
+            <button type="submit" class="btn btn-primary">
+                Thêm
+            </button>
         </form>
     </div>
     

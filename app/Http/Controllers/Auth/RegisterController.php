@@ -19,6 +19,14 @@ class RegisterController extends Controller
         $role = $request->role;
         $email = $request->email;
 
+        $request->validate([
+            'username' => 'required|unique:users|max:50',
+            // 'birthday' => 'required',
+            'name'=>'required',
+            'email'=>'required|unique:users',
+            'password'=>'min:6',
+        ]);
+
         $hashPassword = Hash::make($password);
         DB::table('users')->insert(["username"=>$username,"email"=>$email,"password"=>$hashPassword,"name"=>$name,"role"=>$role]);
     }

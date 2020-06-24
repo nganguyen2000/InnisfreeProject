@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Category;
 use App\Product;
+use App\Detail;
 class ManageProductController extends Controller
 {
    function index(){
-       $products = DB::table('products')->get();
+       $products = Product::all();
        $categories = Category::all();
-       return view("admin.product.index",["categories"=>$categories,"products"=>$products]);
+       $details = Detail::all();
+       return view("admin.product.index",["details"=>$details,"categories"=>$categories,"products"=>$products]);
 
    }
    function create(){
@@ -26,7 +28,11 @@ class ManageProductController extends Controller
     $oldPrice = $request->oldPrice;
     $cate = $request->category;
     $file =$request->file('image')->store("public");
-    $detail=$request->detail;
+    $capacity = $request->capacity;
+    $origin = $request->origin;
+    $quantity = $request->quantity;
+    $content = $request->content;
+
 
 
     
@@ -36,11 +42,25 @@ class ManageProductController extends Controller
     $product->image =$file;
     $product->price =$price;
     $product->oldPrice=$oldPrice;
-    $product->detail=$detail;
     $product->save();
+
+    $Product_id = $product->id;
+
+    $detail = new Detail;
+    $detail->product_id=$Product_id;
+    $detail->quantity=$quantity;
+    $detail->capacity=$capacity;
+    $detail->origin=$origin;
+    $detail->content=$content;
+    $detail->save();
+
+
+
 
     return redirect("admin/product/index");
    }
+
+   
 
     // $name = $request->input("name");
     // $price = $request->input("price");
@@ -50,22 +70,51 @@ class ManageProductController extends Controller
     // DB::table('products')->insert(["name"=>$name,"price"=>$price,"oldPrice"=>$oldPrice,"detail"=>$detail,"image"=>$file]);
     //
     //}
+    
     function delete($id){
-        DB:: table('products')->where('id','=',$id)->delete();
+        Detail::where('product_id',$id)->delete();
+        Product::find($id)->delete();
+      //  DB:: table('products')->where('id','=',$id)->delete();
         return redirect()->route('admin.product.index'); 
     }
     function edit($id){
-        $products = DB::table('products')->find($id);
-        return view("admin.product.edit",['product'=>$products]);
+       // $products = DB::table('products')->find($id);
+        $categories = Category::all();
+        $products =  Product::find($id);
+        $details = Detail::where('product_id',$id)->first();
+
+        return view("admin.product.edit",['categories'=>$categories,'product'=>$products,'detail' => $details]);
     }
     function update($id, Request $request){
         $name = $request->name;
         $price = $request->price;
         $oldPrice = $request->oldPrice;
-        $detail = $request->detail;
-        $proImage = $request->image;
-        $file = $request->file("image")->store("public");
-        DB::table("products")->where("id",$id)->update(["name"=>$name,"price"=>$price,"oldPrice"=>$oldPrice,"detail"=>$detail,"image"=>$file]);
+        $cate = $request->category;
+        $file =$request->file('image')->store("public");
+        $capacity = $request->capacity;
+        $origin = $request->origin;
+        $quantity = $request->quantity;
+        $content = $request->content;
+
+        $product = new Product;
+        $product->name =$name;
+        $product->category_id =$cate;
+        $product->image =$file;
+        $product->price =$price;
+        $product->oldPrice=$oldPrice;
+        $product->save();
+
+        $Product_id = $product->id;
+
+        $detail = new Detail;
+        $detail->product_id=$Product_id;
+        $detail->quantity=$quantity;
+        $detail->capacity=$capacity;
+        $detail->origin=$origin;
+        $detail->content=$content;
+        $detail->save();
+
+       // DB::table("products")->where("id",$id)->update(["name"=>$name,"price"=>$price,"oldPrice"=>$oldPrice,"image"=>$file]);
         return redirect()->route('admin.product.index');
     }
 }

@@ -5,30 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Innissfree</title>
     <link rel="stylesheet" href="/css/home.css">
+    <style type="text/css">
+        .sanpham-khung {
+            background-color: white;
+            border: 1px 2 solid green;
+        }
+    </style>
 </head>
 <body>
    <div class="container">
      @include("partials\header")
-    <div>
-        <ul class="menu">
-            <li><a href="">Trang chủ</a></li>
-            <li><a href="">Dưỡng ẩm</a></li>
-            <li><a href="">Mặt nạ</a></li>
-            <li><a href="">Giới thiệu</a></li>    
-        </ul>
-    </div>
+    
     <h1 class="title">Innissfree</h1>
     <div class="sanpham">
-        @foreach($products as $products)
+        @foreach($products as $product)
             <div class="sanpham-khung">
-            <img src="{{'/storage/'.$products->image}}" alt="" width="300" height="300">
-            <div>
-                <p>{{$products->price}}</p>
-                <p>{{$products->oldPrice}}</p>
+            <img src="{{'/storage/'.$product->image}}" alt="" width="200" height="200">
+            <div class="price">
+                <p class="olpr">{{$product->getDisplayPrice()}}</p>
+                <p class="pr">{{$product->getDisplayOldPrice()}}</p>
             </div>
             <div>
                 <button>Mua</button>
-                <button>Chi tiết</button>
+            <form action="{{'/home/detail/'.$product->id}}" method="GET">
+                    <button type="submit">Chi tiết</button>
+            </form>
+                
             </div>
             </div>
         @endforeach

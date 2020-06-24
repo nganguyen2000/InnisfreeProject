@@ -16,6 +16,11 @@ class LoginController extends Controller
     function login(Request $request){
         $username = $request->username;
         $password = $request->password;
+
+        $request->validate([
+            'username' => 'required',
+            'password'=>'required',
+        ]);
         if(Auth::attempt(["username"=> $username,"password"=>$password])){
             $user = Auth:: user();
           //  echo $user;

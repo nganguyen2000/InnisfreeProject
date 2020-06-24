@@ -41,6 +41,14 @@
 
             </div>
         </div>
+        <div>
+            <ul class="menu">
+                <li><a href="">Trang chủ</a></li>
+                <li><a href="">Dưỡng ẩm</a></li>
+                <li><a href="">Mặt nạ</a></li>
+                <li><a href="">Giới thiệu</a></li>    
+            </ul>
+        </div>
        
     </div>
     

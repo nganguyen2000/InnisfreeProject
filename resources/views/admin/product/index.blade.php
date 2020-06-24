@@ -27,10 +27,16 @@
                     <tr>
                         <td>{{$products->id}}</td>
                         <td>{{$products->name}}</td>
-                        <td>{{$products->price}}</td>
-                        <td>{{$products->oldPrice}}</td>
+                        <td>{{$products->getDisplayPrice()}}</td>
+                        <td>{{$products->getDisplayOldPrice()}}</td>
                         <td> <img src="{{'/storage/'.$products->image}}" alt="" height="150px" width="150px"></td>
-                        <td>{{$products->detail}}</td>
+                        <td>
+                            @foreach($details as $detail)
+                                @if($products->id==$detail->product_id)
+                                    {{$detail->content}}
+                                @endif
+                            @endforeach
+                        </td>
                         <td>
                             @foreach($categories as $category)
                                 @if($products->category_id == $category->id)

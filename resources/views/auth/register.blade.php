@@ -21,25 +21,36 @@
     <div class="container">
         <form action="/auth/register" method="POST">
                 @csrf
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="form-group">
                     <label for="username"> User name</label>
-                    <input type="text" placeholder="username" name="username" class="form-control">
+                    <input type="text" placeholder="username" name="username" class="form-control" value="{{old('username')}}">
                 </div>
                 <div class="form-group">
                     <label for="password">PassWord</label>
-                    <input type="password" placeholder="password" name="password" class="form-control">
+                    <input type="password" placeholder="password" name="password" class="form-control" value="{{old('password')}}">
                 </div>
                 <div class="form-group">
                     <label for="name"> Name</label>
-                    <input type="text" placeholder="name" name="name" class="form-control">
+                    <input type="text" placeholder="name" name="name" class="form-control" value="{{old('name')}}">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" placeholder="email" name="email" class="form-control">
+                    <input type="text" placeholder="email" name="email" class="form-control" value="{{old('email')}}">
                 </div>
                 <div class="form-group">
                     <label for="Role">role</label>
-                    <input type="text" placeholder="role" name="role" class="form-control">
+                    <select class="form-control" name="role">
+                        <option value="user" selected>User</option>
+                    </select>
                 </div>
                 <div class="btn-box">
                     <button type="submit" class="btn btn-primary">

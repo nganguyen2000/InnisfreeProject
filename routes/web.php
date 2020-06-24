@@ -40,3 +40,5 @@ Route::post('admin/product/store',"Admin\ManageProductController@store");
 Route::delete('/product/index/{id}',"Admin\ManageProductController@delete");
 Route::get('/product/index/{id}/edit',"Admin\ManageProductController@edit");
 Route::patch('/product/index/{id}',"Admin\ManageProductController@update");
+
+Route::get('/home/detail/{id}',"User\HomeController@detail");
