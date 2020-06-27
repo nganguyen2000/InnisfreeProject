@@ -11,14 +11,45 @@
     <div class="container">
         @include("partials\header")
         <h1>Detail Product</h1>
-        <div>
-            <img src="{{'/storage/'.$product->image}}"  alt="">
-            <p>{{$product->name}}</p>
-            <p>Dung tích: {{$detail->capacity}}ml</p>
-            <p>Xuất xứ:{{$detail->origin}}</p>
-            <p>{{$detail->content}}</p>
+        <div class="flex">
+            <div class="all_detail">
 
+                <div class="image_detail" style="text-align:center;">
+                    <img src="{{'/storage/'.$product->image}}"  alt="" width="300" height="300">
+                </div>
+               
+    
+                <div class="detail">
+                    <h4>{{$product->name}}</h4>
+                    <div class="stars">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <p><b>Capacity:</b> {{$detail->capacity}}ml</p>
+                    <p><b>Origin: </b>{{$detail->origin}}</p>
+                    <p>{{$detail->content}}</p>
+                    <div class="button_box">
+                        <div class="button_item">
+                            <form action="">
+                                <button class="add" type="submit">Add to cart</button>
+                            </form>
+                        </div>
+                        <div class="button_item" >
+                            <form action="">
+                                <button>Back</button>
+                            </form>
+                        </div>
+                       
+                    </div>
+                   
+                </div>
 
+            </div>
+           
+            
         </div>
     </div>
 </body>

@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <div class="row">
-            @include('partials.header')
+            @include('admin/dashboard')
         </div>
         <h2 class="title">Thêm sản phẩm</h2>
         <form action="/admin/product/store" method="POST" enctype="multipart/form-data">

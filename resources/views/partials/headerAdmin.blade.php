@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>footer</title>
-    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/headerAdmin.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -32,12 +32,12 @@
                         @csrf
                         <button type="submit" class="btLog">Logout</button>
                     </form>
-                    <form action="/user/cart" method="GET">
+                    <form action="/user/cart" method="POST">
                         @csrf
                         <button type="submit">Cart</button>
                     </form>
                 @else
-                    <form action="/auth/login" method="GET" class="btio">
+                    <form action="/auth/login" method="post" class="btio">
                         @csrf
                         <button type="submit" class="btLog">LOGIN</button>
                     </form>
@@ -47,9 +47,23 @@
         </div>
         <div>
             <ul class="menu">
-                <li><a href="">Trang chủ</a></li>
-                <li><a href="">Dưỡng ẩm</a></li>
-                <li><a href="">Mặt nạ</a></li>
+                <li>
+                    <form action="">
+                       <button class="bt" >Home</button>
+                   </form>
+               </li>
+                <li>
+                    <form action="/admin/user/index" method ="POST">
+                        @csrf
+                         <button class="bt" type="submit">User</button>
+                     </form>
+                </li>
+                <li>
+                    <form action="/admin/product/index" method ="get">
+                        @csrf
+                        <button class="bt" type="submit">Product</button>
+                     </form>
+              </li>
                 <li><a href="">Giới thiệu</a></li>    
             </ul>
         </div>

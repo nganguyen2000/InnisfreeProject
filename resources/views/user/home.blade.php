@@ -26,15 +26,24 @@
                 <p class="pr">{{$product->getDisplayOldPrice()}}</p>
             </div>
             <div>
-                <button>Mua</button>
+            <form action="{{'/user/add/'.$product->id}}" method="POST">
+                    @csrf
+                    <button type="submit">Add to cart</button>
+                </form>
+              
             <form action="{{'/home/detail/'.$product->id}}" method="GET">
-                    <button type="submit">Chi tiết</button>
+                    @csrf
+                    <button type="submit">Detail</button>
             </form>
                 
             </div>
             </div>
         @endforeach
     </div>
+    <div class="ft">
+        @include("partials.footer")
+    </div>
+   
    </div> 
     
     

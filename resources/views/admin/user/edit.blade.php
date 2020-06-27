@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="container">
-        @include('partials.header')
+        @include('dashboard')
         <form action="{{'/user/index/'.$user->id}}" method="post" enctype="multipart/form-data">
              @csrf
              @method("PATCH")

@@ -13,7 +13,7 @@ class Product extends Model
         return $this->hashMany("App\Product","category_id","id");
     }
     public function detail(){
-        return $this->hasOne("App\Product","id","product_id");
+        return $this->hasOne("App\Detail","id","product_id");
     }
     public function getDisplayPrice(){
         $formatedPrice = number_format($this->price,0,',','.');

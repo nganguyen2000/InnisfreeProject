@@ -42,3 +42,7 @@ Route::get('/product/index/{id}/edit',"Admin\ManageProductController@edit");
 Route::patch('/product/index/{id}',"Admin\ManageProductController@update");
 
 Route::get('/home/detail/{id}',"User\HomeController@detail");
+
+Route::post('/user/add/{id}',"User\HomeController@addtocart");
+Route::get('user/cart',"User\HomeController@showCart")->name('cart.index');
+Route::delete('cart/index/{id}',"User\HomeController@destroyCart");

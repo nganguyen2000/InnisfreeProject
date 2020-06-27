@@ -1,0 +1,86 @@
+.first {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: white;
+    border: none;
+}
+
+.first_1 {
+    background-color: white;
+    width: 170px;
+    height: 100px;
+}
+
+.first_2 {
+    margin-top: 20px;
+    margin-left: 30%;
+}
+
+div.myButton input {
+    background: url(/img/images.jpg);
+    width: 20px;
+    height: 20px;
+    border: none;
+}
+
+.example {
+    display: flex;
+}
+
+.btio {
+    margin-left: 30rem;
+    margin-top: 20px;
+}
+
+.btLog:hover {
+    border: 1px solid white;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: hsl(123, 87%, 71%);
+}
+
+li {
+    float: left;
+    width: 150px;
+}
+
+.menu li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.bt {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    color: #66CD00;
+    background-color: whitesmoke;
+    font-weight: bold;
+}
+
+.bt {
+    background-color: hsl(123, 87%, 71%);
+    width: 118px;
+    border: 1px solid hsl(123, 87%, 71%);
+}
+
+li .bt:hover {
+    color: #66CD00;
+    background-color: whitesmoke;
+    font-weight: bold;
+    border: 1px solid hsl(123, 87%, 71%);
+    ;
+}

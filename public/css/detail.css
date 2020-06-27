@@ -1,4 +1,38 @@
 h1 {
     text-align: center;
-    color: palevioletred;
+    color: #ea0c0cd6;
+}
+
+.flex {
+    background-color: #d7f3d7;
+}
+
+.detail {
+    width: 400px;
+    margin-left: 50px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.image_detail {
+    width: 400px;
+    background-color: white;
+    border: 1px solid #f1dbdb;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.button_box {
+    display: flex;
+}
+
+.button_item {
+    margin-left: 50px;
+}
+
+.all_detail {
+    display: flex;
+    margin-left: 30px;
+    margin-bottom: 40px;
 }

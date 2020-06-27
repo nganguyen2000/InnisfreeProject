@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        @include('partials.header')
+        @include('admin/dashboard')
         <h1 class="title">Management Products</h1>
         <div>
             <table border="1">
