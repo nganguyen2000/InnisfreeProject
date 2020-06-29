@@ -132,8 +132,24 @@ class HomeController extends Controller
         }
         
         $categories = Category::all();
-        $products = Product::where('id',$id)->get();
+        $products = Product::where('category_id',$id)->get();
         return view('user.home',["products"=>$products,"category"=>$categories,"page" => $page]);
+    }
+    function search(Request $request){
+
+        $page = $request->page;
+        $products = Product::all()->skip($page * 5)->take(5);
+        if($products->isEmpty()){ //Nếu photo lớn hơn số lượng trong database sẽ trả về 0
+            $products = Product::all()->take(5);
+            return redirect('/home/?page=0');
+        }else if($page<0){
+            $totalPage = round(count(Product::all())/5)-1;
+            return redirect('/home/?page='.$totalPage);
+        }
+        $input = $request->search;
+        $categories = Category::all();
+        $products = Product::where('name','like','%'.$input.'%')->get();
+       return view('user.home',["products"=>$products,"category"=>$categories, "page"=>$page]);
     }
     
 
@@ -141,3 +157,4 @@ class HomeController extends Controller
   
 
 }
+

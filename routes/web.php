@@ -49,6 +49,6 @@ Route::delete('cart/index/{id}',"User\HomeController@destroyCart");
 Route::post('cart/update/{id}',"User\HomeController@updateQuantity");
 
 Route::get('/home/header',"User\HomeController@cate");
-Route::get('home/category/{id}',"User\HomeController@showfollowCate");
-
+Route::get('home/category/{id}',"User\HomeController@showFollowCate");
+Route::post('search/sanpham',"User\HomeController@search");
 

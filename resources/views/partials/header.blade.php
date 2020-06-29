@@ -21,9 +21,10 @@
         <div class="first">
             <div class="first_1"><img width="170px" height="100px" src="/img/logo_innisfree.png" alt=""></div>
             <div class="first_2">
-                <form class="example" action="/action_page.php">
+                <form action="/search/sanpham" method="POST">
+                    @csrf
                     <div><input type="text" placeholder="Search.." name="search" ></div>
-                    <div><i class="fas fa-search"></i></div>
+                    <div><button type="submit"><i  class="fas fa-search"></i></button></div>
                 </form>
             </div>
             <div class="firs_3">

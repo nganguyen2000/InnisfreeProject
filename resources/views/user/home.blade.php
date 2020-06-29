@@ -10,10 +10,11 @@
             background-color: white;
             border: 1px 2 solid green;
         }
+        
     </style>
 </head>
 <body>
-   <div class="container">
+   <div class="container" style=" background-color: rgb(243, 239, 239);">
      @include("partials\header")
     
     <h1 class="title">Innissfree</h1>
