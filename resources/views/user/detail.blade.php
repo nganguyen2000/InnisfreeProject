@@ -14,7 +14,7 @@
         <div class="flex">
             <div class="all_detail">
 
-                <div class="image_detail" style="text-align:center;">
+                <div class="image_detail" style="">
                     <img src="{{'/storage/'.$product->image}}"  alt="" width="300" height="300">
                 </div>
                

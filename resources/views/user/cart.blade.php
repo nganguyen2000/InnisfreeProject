@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/cart.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>cart</title>
 </head>
 <body>
     <div class="container">
         @include('partials.header')
-        <h1>Your cart</h1>
+        <h1 class="title">Your cart</h1>
             <a href="/home">back</a>
-            <table class="table table-light">
-                <thead class="thead-light">
+            <table class="table" border="1">
+                <thead>
                     <tr>
                         <th>Name product</th>
                         <th>Image</th>
@@ -32,7 +33,16 @@
                                 <td><img src="{{'/storage/'.$product->image}}" alt="" height="100px" width="100px"></td>
                                 <td>{{$product->oldPrice}}</td>
                                 <td>{{$product->price}}</td>
-                                <td>{{$item->quantity}}</td>
+                                <td>
+                                <form action="{{'/cart/update/'.$product->id}}" method="POST">
+                                        @csrf
+                                        <div class="flex">
+                                            <button type="submit" name="plus">+</button>
+                                            <input class="sl" type="number" name="quantity" value="{{$item->quantity}}">
+                                            <button type="submit" name="minus">-</button>
+                                        </div>
+                                    </form>
+                                </td>
                                 <td>{{$item->quantity*$product->price}}</td>
                                 <?php $total+=$item->quantity*$product->price?>
                                 
@@ -49,19 +59,13 @@
                         </tr>
                     @endforeach
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Total price: <?php echo $total?></th>  
-                        
-                    </tr>
-                    <tr>
-                    <td>
-                        
-                    </td>
-                    </tr>
-                </tfoot>
             </table>
-     
+            <p>Total price: <?php echo $total?>  </p>
+       
+    <div class="ft">
+        @include('partials.footer')
+    </div>
+    
     </div>
 </body>
 </html>

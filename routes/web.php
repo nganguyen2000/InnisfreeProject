@@ -46,3 +46,9 @@ Route::get('/home/detail/{id}',"User\HomeController@detail");
 Route::post('/user/add/{id}',"User\HomeController@addtocart");
 Route::get('user/cart',"User\HomeController@showCart")->name('cart.index');
 Route::delete('cart/index/{id}',"User\HomeController@destroyCart");
+Route::post('cart/update/{id}',"User\HomeController@updateQuantity");
+
+Route::get('/home/header',"User\HomeController@cate");
+Route::get('home/category/{id}',"User\HomeController@showfollowCate");
+
+

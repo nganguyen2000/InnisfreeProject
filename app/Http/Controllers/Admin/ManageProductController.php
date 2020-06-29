@@ -86,6 +86,7 @@ class ManageProductController extends Controller
         return view("admin.product.edit",['categories'=>$categories,'product'=>$products,'detail' => $details]);
     }
     function update($id, Request $request){
+        $product = Product::find($id);
         $name = $request->name;
         $price = $request->price;
         $oldPrice = $request->oldPrice;
@@ -96,7 +97,6 @@ class ManageProductController extends Controller
         $quantity = $request->quantity;
         $content = $request->content;
 
-        $product = new Product;
         $product->name =$name;
         $product->category_id =$cate;
         $product->image =$file;
@@ -105,8 +105,7 @@ class ManageProductController extends Controller
         $product->save();
 
         $Product_id = $product->id;
-
-        $detail = new Detail;
+        $detail = Detail::where('product_id',$id)->first();
         $detail->product_id=$Product_id;
         $detail->quantity=$quantity;
         $detail->capacity=$capacity;
@@ -118,3 +117,6 @@ class ManageProductController extends Controller
         return redirect()->route('admin.product.index');
     }
 }
+
+      
+

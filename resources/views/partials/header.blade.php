@@ -47,10 +47,10 @@
         </div>
         <div>
             <ul class="menu">
-                <li><a href="">Trang chủ</a></li>
-                <li><a href="">Dưỡng ẩm</a></li>
-                <li><a href="">Mặt nạ</a></li>
-                <li><a href="">Giới thiệu</a></li>    
+                <li><a href="/home">Trang chủ</a></li>
+                @foreach ($category as $category)
+                <li> <a value="{{ $category->id }}" href="{{'/home/category/'.$category->id}}">{{ $category->name }}</a></li>
+               @endforeach    
             </ul>
         </div>
        
