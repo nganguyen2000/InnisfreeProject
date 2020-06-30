@@ -52,3 +52,5 @@ Route::get('/home/header',"User\HomeController@cate");
 Route::get('home/category/{id}',"User\HomeController@showFollowCate");
 Route::post('search/sanpham',"User\HomeController@search");
 
+Route::get('/cart/order',"OrderController@show");
+Route::post('/pay',"OrderController@order");

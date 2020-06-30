@@ -110,8 +110,8 @@ class HomeController extends Controller
         }
         //echo $total;
        
-        // echo"<pre>". json_encode($carts[0]->products, JSON_PRETTY_PRINT)."</pre>";
-        return view('user.cart',['carts'=>$carts,"category"=>$categories]);
+      //  echo"<pre>". json_encode($carts, JSON_PRETTY_PRINT)."</pre>";
+     return view('user.cart',['carts'=>$carts,"category"=>$categories]);
     }
     function destroyCart($id){
         Cart::where('product_id',$id)->delete();
@@ -151,6 +151,8 @@ class HomeController extends Controller
         $products = Product::where('name','like','%'.$input.'%')->get();
        return view('user.home',["products"=>$products,"category"=>$categories, "page"=>$page]);
     }
+
+    
     
 
    

@@ -60,7 +60,19 @@
                     @endforeach
                 </tbody>
             </table>
-            <p>Total price: <?php echo $total?>  </p>
+            <div class="flex1">
+                <div class="item1">
+                    <p>Total price: <?php echo $total?>  </p>
+                </div>
+                <div class="item2">
+                    <form action="/cart/order" method="GET">
+                        @csrf
+                        <button class="btn btn-warning" type="submit">Order</button>
+                    </form>
+                </div>
+               
+            </div>
+            
        
     <div class="ft">
         @include('partials.footer')

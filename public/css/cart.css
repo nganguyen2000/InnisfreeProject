@@ -15,3 +15,11 @@
     text-align: center;
     color: green;
 }
+
+.flex1 {
+    display: flex;
+}
+
+.item1 {
+    margin-right: 800px;
+}
