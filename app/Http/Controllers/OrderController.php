@@ -13,6 +13,7 @@ use App\Category;
 use App\Cart;
 use App\User;
 use App\Order;
+use App\Discount;
 
 class OrderController extends Controller
 {
@@ -22,12 +23,15 @@ class OrderController extends Controller
         foreach($carts as $cart){
             $cart->products;  
         }
+        $code = 'no';
+        $sales = Discount::where('code',$code)->get();
         //echo $total;
        
         // echo"<pre>". json_encode($carts[0]->products, JSON_PRETTY_PRINT)."</pre>";
-        return view('user.order',['carts'=>$carts]);
+        return view('user.order',['carts'=>$carts,'sales'=>$sales]);
     }
     function order(Request $request){
+        $total = $request->total;
         $name = $request ->fullName;
         $phone = $request->phone;
         $address = $request->address;
@@ -46,7 +50,9 @@ class OrderController extends Controller
                 $array = array(  
                     'id'=>$product->id,
                     'name'=>$product->name,  
-                    'price'=>  $product->price
+                    'price'=>  $product->price,
+                    'image'=>$product->image,
+                    'quantity'=>$item->quantity,
                 );  
                 array_push($listarray, $array);
             }
@@ -60,8 +66,34 @@ class OrderController extends Controller
         $order->phone = $phone;
         $order->address = $address;
         $order->product = $products;
-        $order->quantity = $item->quantity;
-        $order->save();   
+        $order->save(); 
 
+        Cart::where('user_id',$id)->delete();
+        
+       
+        return view('user.done');
+    }
+
+    function listOrder(){
+        $orders = Order::all();
+        $array=[];
+        foreach($orders as $order){
+            $item = $order->product;
+            
+        }
+        $array = json_decode($item);
+         //echo"<pre>". json_encode($array, JSON_PRETTY_PRINT)."</pre>";
+        return view('admin.order',['orders'=>$orders,'products'=>$array]);
+    }
+
+    function sale(Request $request){
+        $id=Auth::user()->id;
+        $carts = Cart::where('user_id',$id)->get();
+        foreach($carts as $cart){
+            $cart->products;  
+        }
+        $code = $request->code;
+        $sales = Discount::where('code',$code)->get();
+        return view('user.order',['carts'=>$carts,'sales'=>$sales]);
     }
 }

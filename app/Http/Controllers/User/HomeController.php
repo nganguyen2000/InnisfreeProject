@@ -27,14 +27,14 @@ class HomeController extends Controller
             $totalPage = round(count(Product::all())/5)-1;
             return redirect('/home/?page='.$totalPage);
         }
-       
-
         return view("user.home",["products"=>$products,"page" => $page,"category"=>$categories]);
     }
+
     function cate(){
         $categories = Category::all();
         return view("partials.header",["category"=>$categories]);
     }
+
     function detail($id, Request $request){
         $details = Detail::where('product_id',$id)->first();
         $products = Product::find($id);
@@ -43,10 +43,12 @@ class HomeController extends Controller
         return view("user.detail",["product"=>$products,"detail"=>$details]);
 
     }
+
     function addtocart($id, Request $request){
         $products =Product::all();
         $cart = Cart::where('product_id',$id)->first();
         $id_user=Auth::user()->id;
+        $categories = Category::all();
         $quantity=1;
         if(!$cart){
             $cart = new Cart;
@@ -69,7 +71,7 @@ class HomeController extends Controller
             return redirect('/home/?page='.$totalPage);
         }
         
-        return view("user.home",["products"=>$products,"page" => $page]);
+        return view("user.home",["products"=>$products,"page" => $page,"category"=>$categories]);
     }
 
 
@@ -135,6 +137,7 @@ class HomeController extends Controller
         $products = Product::where('category_id',$id)->get();
         return view('user.home',["products"=>$products,"category"=>$categories,"page" => $page]);
     }
+    
     function search(Request $request){
 
         $page = $request->page;

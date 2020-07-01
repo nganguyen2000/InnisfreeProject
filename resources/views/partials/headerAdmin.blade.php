@@ -64,7 +64,13 @@
                         <button class="bt" type="submit">Product</button>
                      </form>
               </li>
-                <li><a href="">Giới thiệu</a></li>    
+                <li>
+                    <form action="/admin/order" method="GET">
+                        @csrf
+                        <button class="bt" type="submit">Order List</button>
+
+                    </form>
+                </li>    
             </ul>
         </div>
        

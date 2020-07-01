@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <style>
 body {
   font-family: Arial;
@@ -112,6 +115,12 @@ span.price {
   text-align: center;
   color: green;
 }
+.formsale{
+  position: absolute;
+  bottom: 130px;
+  right: 500px;
+  font-size: 18px;
+}
 </style>
 </head>
 <body>
@@ -125,59 +134,81 @@ span.price {
         <form action="/pay" method="POST">
             @csrf
             <div class="row">
-            <div class="col-50">
-                <h3>Billing Address</h3>
-                <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                <input type="text" name="fullName" placeholder="your name">
-                <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                <input type="text" name="email" placeholder="your email">
-                <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                <input type="text" name="address" placeholder="542 W. 15th Street">
-                <label for="phone"><i class="fa fa-phone"></i> Phone number</label>
-                <input type="text" name="phone" placeholder="your phone number">
-                <label for="city"><i class="fa fa-institution"></i> City</label>
-                <input type="text" name="city" placeholder="Da Nang">
-            </div>
-            <div class="col-50">
-                <div class="container">
-                <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> </span></h4>
-                <div>
-                  <table border="1">
-                    <tr> 
-                      <th>name</th>
-                      <th>image</th>
-                      <th>price</th>
-                      <th>quantity</th>
-                      <th>total price</th>
-                    </tr>
-                    <?php $total=0;?>
-                    @foreach( $carts as $item)
-                    <tr>
-                      @foreach($item->products as $product)
-                    <td>{{$product->name}}</td>
-                    <td><img src="{{'/storage/'.$product->image}}" alt="" height="100px" width="100px"></td>
-                    <td>{{$product->price}}</td>
-                    <td>x{{$item->quantity}}</td>
-                    <td>{{$item->quantity*$product->price}}</td>
-                    <?php $total +=$item->quantity*$product->price ?>
-                      @endforeach
-                    </tr>
-                    @endforeach
-                  </table>
-                </div>
-               
-                <hr>
-              <p>Total <span class="price" style="color:black"><b><?php echo $total;?></b></span></p>
-                </div>
-            </div>
+              <div class="col-50">
+                  <h3>Billing Address</h3>
+                  <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                  <input type="text" name="fullName" placeholder="your name" value="{{old('fullName')}}">
+                  <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                  <input type="text" name="email" placeholder="your email">
+                  <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                  <input type="text" name="address" placeholder="542 W. 15th Street">
+                  <label for="phone"><i class="fa fa-phone"></i> Phone number</label>
+                  <input type="text" name="phone" placeholder="your phone number">
+                  <label for="city"><i class="fa fa-institution"></i> City</label>
+                  <input type="text" name="city" placeholder="Da Nang">
+              </div>
+              <div class="col-50" style="position: relative;">
+                  <div class="container">
+                      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> </span></h4>
+                      <div>
+                        <table border="1">
+                          <tr> 
+                            <th>name</th>
+                            <th>image</th>
+                            <th>price</th>
+                            <th>quantity</th>
+                            <th>total price</th>
+                          </tr>
+                          <?php $total = 0; $price=0; $sale = 0;?>
+                          @foreach( $carts as $item)
+                          <tr>
+                            @foreach($item->products as $product)
+                              <td>{{$product->name}}</td>
+                              <td><img src="{{'/storage/'.$product->image}}" alt="" height="100px" width="100px"></td>
+                              <td>{{$product->price}}</td>
+                              <td>x{{$item->quantity}}</td>
+                              <td>{{$item->quantity*$product->price}}</td>
+                              <?php
+                                $price +=$item->quantity*$product->price; 
+                                ?>
+                            @endforeach
+                          </tr>
+                          @endforeach
+                          @foreach($sales as $dis)
+                          <?php $sale = $sale + $dis->percent;
+                            if ($sale > 0) {
+                              $price = $price - (($price/100)*$sale);
+                            }
+                          ?>
+                          @endforeach
+                        </table>
+                      </div> 
+                      <hr>
+                      <p>Total <span class="price" style="color:black"><b>
+                        <input readonly type="text" name="total" value="<?php echo $price?>">
+                      </b></span></p>
+                  </div>
+              </div>
             
             
             </div>
             
-              <button type="submit" class="btn">Pay</button>
+              <button type="submit" class="btn" >Pay</button>
            
-            
+
         </form>
+        <div class="formsale">
+          <form action="/sale" method="POST">
+            @csrf
+            <div>
+            <label for=""> Percent:<span style="color: red;"> {{$sale}}%</span></label>
+            </div>
+            <label for="code"> Code Sale</label>
+            <input type="text" name="code" style="width: 300px">
+            <button type="submit" class="bt btn-info">Apply</button>
+          </form>
+        </div>
+       
         </div>
     
     

@@ -11,7 +11,7 @@ use App\Detail;
 class ManageProductController extends Controller
 {
    function index(){
-       $products = Product::all()->orderBy('price', 'asc');;
+       $products = Product::all();
        $categories = Category::all();
        $details = Detail::all();
        return view("admin.product.index",["details"=>$details,"categories"=>$categories,"products"=>$products]);

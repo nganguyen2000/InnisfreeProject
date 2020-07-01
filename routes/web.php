@@ -54,3 +54,6 @@ Route::post('search/sanpham',"User\HomeController@search");
 
 Route::get('/cart/order',"OrderController@show");
 Route::post('/pay',"OrderController@order");
+Route::get('/admin/order',"OrderController@listOrder");
+
+ Route::post('/sale',"OrderController@sale");
