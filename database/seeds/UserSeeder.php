@@ -17,7 +17,8 @@ class UserSeeder extends Seeder
                 'name' => 'Nga Nguyen',
                 'email'=>'admin@123',
                 'role'=>'admin',
-                'password'=>'123',
+                'password'=>'$2y$10$DIwlXOs.W.2R0gaOPrLghuZ5SU3V5GWoe3wsk5TGbElX.sJTI42Ty',
+                'money'=>0,
             ],
             [
                 'username'=>'user',
@@ -25,6 +26,7 @@ class UserSeeder extends Seeder
                 'email'=>'user@123',
                 'role'=>'user',
                 'password'=>'123',
+                'money'=>1000000,
             ]
 
         ]);  

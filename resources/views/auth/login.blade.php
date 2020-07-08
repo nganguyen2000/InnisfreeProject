@@ -34,7 +34,7 @@
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="text" placeholder="password" class="form_control" name="password">
+                <input type="password" placeholder="password" class="form_control" name="password">
             </div>
             <div>
                 <p style="color:red">{{Request::get('error')}}</p>

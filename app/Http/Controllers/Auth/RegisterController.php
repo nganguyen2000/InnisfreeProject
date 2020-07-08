@@ -18,6 +18,7 @@ class RegisterController extends Controller
         $name = $request->name;
         $role = $request->role;
         $email = $request->email;
+        $money = 0;
 
         $request->validate([
             'username' => 'required|unique:users|max:50',
@@ -28,7 +29,7 @@ class RegisterController extends Controller
         ]);
 
         $hashPassword = Hash::make($password);
-        DB::table('users')->insert(["username"=>$username,"email"=>$email,"password"=>$hashPassword,"name"=>$name,"role"=>$role]);
+        DB::table('users')->insert(["username"=>$username,"email"=>$email,"password"=>$hashPassword,"name"=>$name,"role"=>$role,"money"=>$money]);
     }
 }
 

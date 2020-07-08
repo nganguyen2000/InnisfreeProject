@@ -19,7 +19,7 @@ class ManageUserController extends Controller
     function edit($id){
         //echo $id;
         $users = DB::table("users")->find($id);
-        //echo json_encode($pet); in gia tri ra
+        // //echo json_encode($pet); in gia tri ra
         return view("admin.user.edit",['user'=>$users]);
     }
     function update($id, Request $request){

@@ -36,11 +36,12 @@ class HomeController extends Controller
     }
 
     function detail($id, Request $request){
+        $categories = Category::all();
         $details = Detail::where('product_id',$id)->first();
         $products = Product::find($id);
         
         
-        return view("user.detail",["product"=>$products,"detail"=>$details]);
+        return view("user.detail",["product"=>$products,"detail"=>$details,"category"=>$categories]);
 
     }
 
